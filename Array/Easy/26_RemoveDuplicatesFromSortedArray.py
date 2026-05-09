@@ -13,26 +13,15 @@ class Solution:
         :param nums: List[int] - sorted input array
         :return: int - length of array after removing duplicates
         """
-        if not nums:
-            return 0
 
-        # Pointer i tracks the position of the last unique element
         i = 0
 
-        # Pointer j scans through the array
         for j in range(1, len(nums)):
             if nums[j] != nums[i]:
                 i += 1
                 nums[i] = nums[j]
+        return nums
 
-        return i + 1
 
-
-# Example run
-if __name__ == "__main__":
-    obj = Solution()
-    arr = [1, 1, 2, 3, 3]
-    length = obj.removeDuplicates(arr)
-    print(
-        f"Input: [1,1,2,3,3] -> Length after removing duplicates: {length}, Array: {arr[:length]}"
-    )
+obj = Solution()
+print(obj.removeDuplicates([1, 1, 3, 4, 5]))
