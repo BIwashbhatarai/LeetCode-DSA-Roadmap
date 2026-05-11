@@ -1,0 +1,1 @@
+        return "/" if not stack else "/" + "/".join(stack)

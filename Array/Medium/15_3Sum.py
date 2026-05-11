@@ -19,29 +19,26 @@ class Solution:
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
-            left, right = i + 1, n - 1
-            target = -nums[i]  # We want nums[left] + nums[right] == -nums[i]
+            i = 0
+            j = i + 1
+            k = n - 1
 
-            while left < right:
-                current_sum = nums[left] + nums[right]
+            while j < k:
+                total = nums[i] + nums[j] + nums[k]
 
-                if current_sum == target:
-                    # Found a valid triplet
-                    result.append([nums[i], nums[left], nums[right]])
-                    left += 1
-                    right -= 1
+                if total == 0:
+                    result.append((nums[i], nums[j], nums[k]))
 
-                    # Skip duplicates for left
-                    while left < right and nums[left] == nums[left - 1]:
-                        left += 1
-                    # Skip duplicates for right
-                    while left < right and nums[right] == nums[right + 1]:
-                        right -= 1
+                    while j < k and nums[j] == nums[j - 1]:
+                        j += 1
 
-                elif current_sum < target:
-                    left += 1  # Need a bigger sum
+                    while j < k and nums[k] == nums[k - 1]:
+                        k -= 1
+
+                elif total < 0:
+                    j += 1
                 else:
-                    right -= 1  # Need a smaller sum
+                    k -= 1
 
         return result
 
